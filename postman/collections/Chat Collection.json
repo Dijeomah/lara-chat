@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "d6d82bc1-22cd-4f3b-b9ed-d3c245c40093",
+		"name": "Chat Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "7118903-d6d82bc1-22cd-4f3b-b9ed-d3c245c40093"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Registration",
+					"id": "7429210c-b54e-4b20-8fe2-c5dd4f98aba1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"John Doe\",\r\n    \"email\":\"john@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/auth/register",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"id": "b0aa791c-3ef3-4913-867b-a28f090e9a4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"john@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/auth/login",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "6ecbe0b8-18f2-4596-850b-4cd1da86a6d3"
+		},
+		{
+			"name": "Chat Rooms",
+			"item": [
+				{
+					"name": "Chat Rooms",
+					"id": "b5ea5015-c748-426d-88a0-55b27859e49e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Rlc3QuYXdlZnVuLmlvL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjc2NTA2NTUwLCJleHAiOjE2NzY1MTAxNTAsIm5iZiI6MTY3NjUwNjU1MCwianRpIjoiYkhwbTlIOHpLOUhQTmVKVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.r9n1Z2_U1urvv_6WN6oSIOjQxMjlEKZ_-yX-aZ7zcQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev}}/chat-room",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"chat-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Messages",
+					"id": "24fdfb74-828a-4dde-a9b3-79e76ef561c0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Rlc3QuYXdlZnVuLmlvL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjc2NTA2NTUwLCJleHAiOjE2NzY1MTAxNTAsIm5iZiI6MTY3NjUwNjU1MCwianRpIjoiYkhwbTlIOHpLOUhQTmVKVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.r9n1Z2_U1urvv_6WN6oSIOjQxMjlEKZ_-yX-aZ7zcQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dev}}/chat-room/:roomId/messages",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"chat-room",
+								":roomId",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "roomId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "d4c5ce04-8a49-48c4-9de2-0bdc2ad47b8f"
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Send Messages",
+					"id": "7f25fbb5-ebae-4206-9973-2a83cab24372",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Rlc3QuYXdlZnVuLmlvL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjc2NTA2NTUwLCJleHAiOjE2NzY1MTAxNTAsIm5iZiI6MTY3NjUwNjU1MCwianRpIjoiYkhwbTlIOHpLOUhQTmVKVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.r9n1Z2_U1urvv_6WN6oSIOjQxMjlEKZ_-yX-aZ7zcQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"This is a test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev}}/chat-room/:roomId/messages",
+							"host": [
+								"{{dev}}"
+							],
+							"path": [
+								"chat-room",
+								":roomId",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "roomId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "216fac80-6d05-4014-b685-077663133aad"
+		},
+		{
+			"name": "test",
+			"id": "bd92050e-ceda-4d93-aaa0-61c9c8083535",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Okakwu Mary\",\r\n    \"email\": \"email@email.com\",\r\n    \"phone_number\": \"23482100019\",\r\n    \"marital_status\": \"single\",\r\n    \"birth_date\": \"1998/05/03\",\r\n    \"tax_id\": \"22333\",\r\n    \"loan_amount\": \"200\",\r\n    \"monthly_income\": \"2000\",\r\n    \"loan_purpose\": \"1\",\r\n    \"loan_period\": \"2\",\r\n    \"property_address\": \"asaba\",\r\n    \"employment_status\": \"business\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/apply-now",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"apply-now"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test Copy",
+			"id": "82c160d3-c692-44e7-bb99-f03d6e508f77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d717016b-7d30-4595-9c77-de11847204e1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d9c65f5a-d38f-41dd-ab10-6c9eb8e2cb51",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "10e4d1b0-6ded-468a-af40-4092d72d0c9e",
+			"key": "local",
+			"value": "127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"id": "0051b935-a236-4eb3-8c76-a46f40203df8",
+			"key": "dev",
+			"value": "https://test.awefun.io/api",
+			"type": "string"
+		}
+	]
+}
