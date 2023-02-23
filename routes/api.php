@@ -1,6 +1,7 @@
 <?php
 
     use App\Http\Controllers\Auth\AuthController;
+    use App\Http\Controllers\Chat\AdminChatController;
     use App\Http\Controllers\Chat\ChatController;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Route;
@@ -32,4 +33,15 @@
         Route::get('/{roomId}/messages', [ChatController::class, 'messages']);
         Route::post('/{roomId}/message', [ChatController::class, 'newMessage']);
     });
+
+    Route::prefix('admin/chat-room')->group(function () {
+        Route::get('/', [AdminChatController::class, 'rooms']);
+        Route::get('/{roomId}/message/{userId}', [AdminChatController::class, 'myMessages']);
+        Route::post('/{roomId}/message/{userId}', [AdminChatController::class, 'sendMessage']);
+        Route::put('/chat/end', [AdminChatController::class, 'updateEngagementStatus']);
+
+//        Route::post('/{roomId}/message/{userId}', [AdminChatController::class, 'sendMessage']);
+    });
+
+
 

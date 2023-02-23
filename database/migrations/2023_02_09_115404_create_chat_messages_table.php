@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+    use App\Models\User;
+    use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,6 +16,7 @@ class CreateChatMessagesTable extends Migration
     {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class,'admin_id');
             $table->integer('chat_room_id');
             $table->integer('user_id');
             $table->mediumText('message');
