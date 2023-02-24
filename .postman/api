@@ -5,7 +5,7 @@ id = 73be8748-4ffc-4ed0-8be8-f824c45d8e21
 
 [relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"7118903-d6d82bc1-22cd-4f3b-b9ed-d3c245c40093","path":"Chat Collection.json","metaData":{}}
+files[] = {"id":"7118903-f4548fbf-f1b9-4539-ac05-8c34c77b7e3e","path":"Chat Collection(1).json","metaData":{}}
 
 [relations.collections.metaData]
 

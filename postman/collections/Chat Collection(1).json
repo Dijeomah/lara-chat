@@ -1,0 +1,713 @@
+{
+	"info": {
+		"_postman_id": "f4548fbf-f1b9-4539-ac05-8c34c77b7e3e",
+		"name": "Chat Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "7118903-f4548fbf-f1b9-4539-ac05-8c34c77b7e3e"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "User Registration",
+							"id": "f0fcd44b-42b8-4056-9634-f293ec92b948",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Driver 1\",\r\n    \"email\":\"driver1@domain.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"driver\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2b38b0b6-0701-4aa6-b166-ca65843fa1d4",
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"const { authorisation: { token: token } } = jsonData\r",
+											"pm.collectionVariables.set(\"userToken\", token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "a93fcf2f-0147-4b80-8e2b-462796b743d1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"driver1@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "86c14942-342f-4464-a6ee-1957d7cca182"
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "AdminRegistration",
+							"id": "6ee5e229-1eca-4037-8f64-61ef70faa4a1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Admin 1\",\r\n    \"email\":\"admin1@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/admin/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminLogin",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a43a813-4a05-48bd-a747-ee1a25a2db77",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "e9f7a14f-f1b4-43b9-ac00-7fc93c28f51e",
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"const { authorisation: { token: token } } = jsonData\r",
+											"pm.collectionVariables.set(\"adminToken\", token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "8c658fb7-e5aa-4e4b-9aea-86a17ee5f04d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin1@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/admin/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "8859452c-fb38-4a64-b7d0-42edb2eb226d"
+				}
+			],
+			"id": "27bff668-39a1-4854-9ea8-1038b7fd139e"
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Chat",
+					"item": [
+						{
+							"name": "Send Messages",
+							"id": "e7a4fc61-c8c0-46bc-9aae-8c04085d16f5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2NzcyNTgzOTEsImV4cCI6MTY3NzI2MTk5MSwibmJmIjoxNjc3MjU4MzkxLCJqdGkiOiJ6UTMzQlpRSzR6SXRsdjlHIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.om_o3g_J49OSf3DP7nggtsVVvfYU8HEuBLebdBnlOwc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\":\"We dont have passengers for now.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/admin/chat-room/:roomId/message/:userId",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"chat-room",
+										":roomId",
+										"message",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "2"
+										},
+										{
+											"key": "userId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Close Chat",
+							"id": "ba7a45ed-80f1-4dcb-9b7d-05dad3746164",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/admin/chat-room/chat/end",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"chat-room",
+										"chat",
+										"end"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "e6871d57-3607-4e4a-bd14-4c69edab49ab"
+				},
+				{
+					"name": "Chat Rooms",
+					"item": [
+						{
+							"name": "Chat Rooms",
+							"id": "0de6588b-4027-460f-9dff-5b6c04ca65ad",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/admin/chat-room",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"chat-room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Messages",
+							"id": "3bf8f0b2-c671-480f-805b-a42b0b925541",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/admin/chat-room/:roomId/messages",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"chat-room",
+										":roomId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Messages (Single User)",
+							"id": "800ee460-58d4-47fa-b5f8-999017295cc8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/admin/chat-room/:roomId/message/:userId",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"chat-room",
+										":roomId",
+										"message",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "2"
+										},
+										{
+											"key": "userId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "902fb6c0-8735-41cd-97f3-709c4eaa651d",
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{adminToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bb9d2a8b-e63b-46d5-933e-43b40624bff5",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "59ba7770-e525-4f23-8054-90cfceb39acb",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"id": "fd0f48c0-2965-4497-9489-b8f6763ab490"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Chat Rooms",
+					"item": [
+						{
+							"name": "Chat Rooms",
+							"id": "8296af0e-3bfb-4e03-9859-7acef066c817",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Rlc3QuYXdlZnVuLmlvL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjc2OTg1NjA1LCJleHAiOjE2NzY5ODkyMDUsIm5iZiI6MTY3Njk4NTYwNSwianRpIjoiMklhcDd5TmtPWEFuU3pLaSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.yNxIh2HRx-qSTwXdWehd-YgX4Vr2RR5uN1IPskmx9LU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dev}}/chat-room",
+									"host": [
+										"{{dev}}"
+									],
+									"path": [
+										"chat-room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Messages",
+							"id": "75e92249-f0b8-40b3-98cf-f9e0b74b593a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE2NzcxNTQxOTgsImV4cCI6MTY3NzE1Nzc5OSwibmJmIjoxNjc3MTU0MTk5LCJqdGkiOiJDQnBpNUlub1lwVmdGdXlXIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ncuEENVhUbTsKPGAGwb1sdlV5He5IFrUq5yBii93Zjg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/chat-room/:roomId/messages",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"chat-room",
+										":roomId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "b7cdaee8-050f-4e2c-8175-c185158c4787"
+				},
+				{
+					"name": "Chat",
+					"item": [
+						{
+							"name": "Send Messages",
+							"id": "d5d65aa4-13c9-4784-b53e-e0bf20d84cce",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\":\"This is a first test \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/chat-room/2/message",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"chat-room",
+										"2",
+										"message"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "0bc2d347-4991-40a9-ba09-2c03e851a3d0"
+				}
+			],
+			"id": "010df6cc-07f1-46ad-b58d-007c11c58762",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{userToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "10acc643-492d-4b19-a359-6d093cc2b977",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "17e75d30-6cd0-4395-85f5-639f8f8ba367",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "test",
+			"id": "2d85a8a2-315f-4439-9592-62bcac12ce55",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Okakwu Mary\",\r\n    \"email\": \"email@email.com\",\r\n    \"phone_number\": \"23482100019\",\r\n    \"marital_status\": \"single\",\r\n    \"birth_date\": \"1998/05/03\",\r\n    \"tax_id\": \"22333\",\r\n    \"loan_amount\": \"200\",\r\n    \"monthly_income\": \"2000\",\r\n    \"loan_purpose\": \"1\",\r\n    \"loan_period\": \"2\",\r\n    \"property_address\": \"asaba\",\r\n    \"employment_status\": \"business\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/apply-now",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"apply-now"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test Copy",
+			"id": "01dc852d-5ea3-41a4-ab3b-d4b91d84a880",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "909247fe-3570-434c-a0ad-11aaace76141",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d837ba88-9f95-4fc1-a69b-ea659f3ee69d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7c909ba7-4f59-42f1-bf59-c9e8e995b0ad",
+			"key": "local",
+			"value": "127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"id": "b20df516-35ab-407c-8654-698dd06bf2f0",
+			"key": "dev",
+			"value": "https://test.awefun.io/api",
+			"type": "string"
+		},
+		{
+			"id": "c0e42fd4-abbf-4582-9b9a-814e4bc5dc67",
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "2cd760b3-9d58-4bd0-aad9-f1ca9b19398f",
+			"key": "userToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
