@@ -12,10 +12,10 @@
 
     class AdminChatController extends Controller
     {
-        public function __construct()
-        {
-            $this->middleware('auth:api');
-        }
+//        public function __construct()
+//        {
+//            $this->middleware(['auth:api']);
+//        }
 
         public function rooms()
         {
@@ -23,11 +23,18 @@
             return $this->dataResponse(Response::HTTP_OK, 'Rooms fetched', $rooms);
         }
 
+        public function allMyMessages(Request $request, $roomId){
+            $admin = $request->user('admin');
+            $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
+            return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessages);
+        }
+
+
         //get messages of the logged admin
         public function myMessages(Request $request, $roomId, $userId)
         {
-            $admin = $request->user();
-            $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId, 'user_id' => $userId])->get();
+            $admin = $request->user('admin');
+            $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId, 'user_id' => $userId])->with('user')->orderBy('created_at', 'DESC')->get();
             return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessages);
         }
 

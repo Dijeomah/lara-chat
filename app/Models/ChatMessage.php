@@ -16,4 +16,8 @@ class ChatMessage extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function admin(){
+        return $this->hasOne(Admin::class, 'id', 'admin_id');
+    }
 }

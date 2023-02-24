@@ -19,8 +19,7 @@
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
-                $table->enum('role', ['admin', 'advertiser', 'driver']);
-                $table->enum('engagement_status', [0, 1])->default(0)->comment('0=>not engaged, 1=>engage');
+                $table->enum('role', ['advertiser', 'driver']);
                 $table->rememberToken();
                 $table->timestamps();
 
