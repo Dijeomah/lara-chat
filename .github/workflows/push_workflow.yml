@@ -10,10 +10,10 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
-#      - name: NPM Build
-#        run: |
-#          npm install
-#          npm run prod
+      #      - name: NPM Build
+      #        run: |
+      #          npm install
+      #          npm run prod
       - name: Put built assets in Artifacts
         uses: actions/upload-artifact@v1
         with:
@@ -47,4 +47,4 @@ jobs:
       - name: Deploy to Production
         env:
           DOT_ENV: ${{ secrets.DOT_ENV_PRODUCTION }}
-        run: php vendor/bin/dep deploy prod --branch="master" -vv 
+        run: php vendor/bin/dep deploy prod --branch="master" -vv

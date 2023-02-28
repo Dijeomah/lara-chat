@@ -1,14 +1,18 @@
 <?php
 
+
     namespace Deployer;
 
     require 'recipe/laravel.php';
     require 'contrib/npm.php';
     require 'contrib/rsync.php';
 
+///////////////////////////////////
 // Config
+///////////////////////////////////
 
-    set('repository', 'https://github.com/Dijeomah/lara-chat.git');
+    set('application', 'Laravel Chat');
+    set('repository', 'https://github.com/Dijeomah/lara-chat.git');// Git Repository
     set('ssh_multiplexing', true);  // Speed up deployment
 //set('default_timeout', 1000);
 
@@ -16,7 +20,7 @@
         return __DIR__; // If your project isn't in the root, you'll need to change this.
     });
 
-    // Configuring the rsync exclusions.
+// Configuring the rsync exclusions.
 // You'll want to exclude anything that you don't want on the production server.
     add('rsync', [
         'exclude' => [
@@ -28,26 +32,23 @@
         ],
     ]);
 
-    // Set up a deployer task to copy secrets to the server.
+// Set up a deployer task to copy secrets to the server.
 // Grabs the dotenv file from the github secret
     task('deploy:secrets', function () {
         file_put_contents(__DIR__ . '/.env', getenv('DOT_ENV'));
         upload('.env', get('deploy_path') . '/shared');
     });
 
-
-    add('shared_files', []);
-    add('shared_dirs', []);
-    add('writable_dirs', []);
-
+///////////////////////////////////
 // Hosts
+///////////////////////////////////
 
-    host('3.228.233.48')
+    host('prod') // Name of the server
+    ->setHostname('3.228.233.48')
         ->set('remote_user', 'omah')
         ->set('branch', 'master') // Git branch
         ->set('deploy_path', '/var/www/lara-chat');
 
-// Hooks
     after('deploy:failed', 'deploy:unlock');  // Unlock after failed deploy
 
 ///////////////////////////////////
