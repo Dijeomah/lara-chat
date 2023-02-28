@@ -45,7 +45,7 @@
     host('3.228.233.48')
         ->set('remote_user', 'omah')
         ->set('branch', 'master') // Git branch
-        ->set('deploy_path', '~/chat');
+        ->set('deploy_path', '/var/www/lara-chat');
 
 // Hooks
     after('deploy:failed', 'deploy:unlock');  // Unlock after failed deploy
