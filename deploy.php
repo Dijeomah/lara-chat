@@ -11,7 +11,7 @@
 // Config
 ///////////////////////////////////
 
-    set('application', 'Awefun Chat');
+    set('application', 'Awefun ChatApp');
     set('repository', 'https://github.com/Dijeomah/lara-chat.git');// Git Repository
     set('ssh_multiplexing', true);  // Speed up deployment
 //set('default_timeout', 1000);
