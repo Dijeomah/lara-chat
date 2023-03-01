@@ -23,7 +23,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Driver 1\",\r\n    \"email\":\"driver1@domain.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"driver\"\r\n}",
+									"raw": "{\r\n    \"name\":\"Advertiser 1\",\r\n    \"email\":\"advertiser1@domain.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"advertiser\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -31,9 +31,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/auth/register",
+									"raw": "{{dev}}/auth/register",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"auth",
@@ -68,7 +68,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"driver1@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"raw": "{\r\n    \"email\": \"stinachinma@gmail.com\",\r\n    \"password\": \"dinmadinma\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -76,9 +76,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/auth/login",
+									"raw": "{{dev}}/auth/login",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"auth",
@@ -105,7 +105,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Admin 1\",\r\n    \"email\":\"admin1@domain.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"raw": "{\r\n    \"name\":\"Admin 1\",\r\n    \"email\":\"admin1@domain.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"advertiser\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -113,9 +113,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/admin/auth/register",
+									"raw": "{{dev}}/admin/auth/register",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -169,9 +169,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/admin/auth/login",
+									"raw": "{{dev}}/admin/auth/login",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -201,16 +201,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2NzcyNTgzOTEsImV4cCI6MTY3NzI2MTk5MSwibmJmIjoxNjc3MjU4MzkxLCJqdGkiOiJ6UTMzQlpRSzR6SXRsdjlHIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.om_o3g_J49OSf3DP7nggtsVVvfYU8HEuBLebdBnlOwc",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [
 									{
@@ -221,7 +211,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"message\":\"We dont have passengers for now.\"\r\n}",
+									"raw": "{\r\n    \"message\":\"Messgae from Drame.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -229,9 +219,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/admin/chat-room/:roomId/message/:userId",
+									"raw": "{{dev}}/admin/chat-room/:roomId/message/:userId",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -247,7 +237,7 @@
 										},
 										{
 											"key": "userId",
-											"value": "4"
+											"value": "1"
 										}
 									]
 								}
@@ -315,9 +305,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{local}}/admin/chat-room",
+									"raw": "{{dev}}/admin/chat-room",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -343,9 +333,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{local}}/admin/chat-room/:roomId/messages",
+									"raw": "{{dev}}/admin/chat-room/:roomId/messages",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -379,9 +369,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{local}}/admin/chat-room/:roomId/message/:userId",
+									"raw": "{{dev}}/admin/chat-room/:roomId/message/:userId",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"admin",
@@ -393,11 +383,11 @@
 									"variable": [
 										{
 											"key": "roomId",
-											"value": "2"
+											"value": "1"
 										},
 										{
 											"key": "userId",
-											"value": "4"
+											"value": "1"
 										}
 									]
 								}
@@ -440,7 +430,39 @@
 					]
 				}
 			],
-			"id": "fd0f48c0-2965-4497-9489-b8f6763ab490"
+			"id": "fd0f48c0-2965-4497-9489-b8f6763ab490",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{adminToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "47f6f334-300d-4081-97f9-de910b481a61",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e2e0e82c-bf08-4bf3-949e-bfd552504dd9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "User",
@@ -492,16 +514,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE2NzcxNTQxOTgsImV4cCI6MTY3NzE1Nzc5OSwibmJmIjoxNjc3MTU0MTk5LCJqdGkiOiJDQnBpNUlub1lwVmdGdXlXIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ncuEENVhUbTsKPGAGwb1sdlV5He5IFrUq5yBii93Zjg",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -511,9 +523,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{local}}/chat-room/:roomId/messages",
+									"raw": "{{dev}}/chat-room/:roomId/messages",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"chat-room",
@@ -561,13 +573,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{local}}/chat-room/2/message",
+									"raw": "{{dev}}/chat-room/1/message",
 									"host": [
-										"{{local}}"
+										"{{dev}}"
 									],
 									"path": [
 										"chat-room",
-										"2",
+										"1",
 										"message"
 									]
 								}
@@ -686,25 +698,25 @@
 	],
 	"variable": [
 		{
-			"id": "7c909ba7-4f59-42f1-bf59-c9e8e995b0ad",
+			"id": "793f3506-1af0-4270-8873-07e11d2da787",
 			"key": "local",
 			"value": "127.0.0.1:8000/api",
 			"type": "string"
 		},
 		{
-			"id": "b20df516-35ab-407c-8654-698dd06bf2f0",
+			"id": "c1f3fe4a-101c-4bfa-891c-be55ef113dbd",
 			"key": "dev",
 			"value": "https://test.awefun.io/api",
 			"type": "string"
 		},
 		{
-			"id": "c0e42fd4-abbf-4582-9b9a-814e4bc5dc67",
+			"id": "b29b08b1-e562-4c61-b6bc-86a245855960",
 			"key": "adminToken",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "2cd760b3-9d58-4bd0-aad9-f1ca9b19398f",
+			"id": "46e7cd99-cf86-47ac-8b16-0529f164ef79",
 			"key": "userToken",
 			"value": "",
 			"type": "string"
