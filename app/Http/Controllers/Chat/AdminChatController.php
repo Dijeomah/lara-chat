@@ -26,7 +26,7 @@
         public function allMyMessages(Request $request, $roomId)
         {
             $admin = $request->user('admin');
-            $adminMessages = ChatMessage::select('user_id')->where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
+            $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->with('user')->orderBy('created_at', 'DESC')->first();
 //            foreach ($adminMessages as $adminMessage){
 //                return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessage->user_id);
 //            }
