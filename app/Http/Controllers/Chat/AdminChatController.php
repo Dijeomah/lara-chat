@@ -42,7 +42,7 @@
         public function sendMessage(Request $request, $roomId, $userId)
         {
 
-            $admin = $request->user();
+            $admin = $request->user('admin');
 //
             $prevChat = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId, 'user_id' => $userId])->first();
 
@@ -61,7 +61,7 @@
         }
 
         public function updateEngagementStatus(Request $request){
-            $admin = $request->user();
+            $admin = $request->user('admin');
             $statusUpdate = User::where(['id'=>$admin->id,'role'=>'admin'])->update([
                'engagement_status'=>'0'
             ]);
