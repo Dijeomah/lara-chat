@@ -48,7 +48,7 @@
         Route::get('/{roomId}/messages', [AdminChatController::class, 'allMyMessages']);
         Route::get('/{roomId}/message/{userId}', [AdminChatController::class, 'myMessages']);
         Route::post('/{roomId}/message/{userId}', [AdminChatController::class, 'sendMessage']);
-        Route::put('/chat/end', [AdminChatController::class, 'updateEngagementStatus']);
+        Route::put('/chat/end/{user_id}', [AdminChatController::class, 'updateEngagementStatus']);
 
 //        Route::post('/{roomId}/message/{userId}', [AdminChatController::class, 'sendMessage']);
     });

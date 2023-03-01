@@ -36,7 +36,7 @@
 //check if there is a previous conversation, if there is non, create one, if there is, continue chat
             $user = $request->user();
 
-            $prevChat = ChatMessage::where('user_id', $user->id)->first();
+            $prevChat = ChatMessage::where(['user_id' => $user->id, 'chat_status' => true])->first();
 
             if ($prevChat) {
                 $newMessage = new ChatMessage;
@@ -48,7 +48,8 @@
                 return $this->dataResponse(Response::HTTP_OK, 'Message sent.', $newMessage);
             }
 
-            $admin = Admin::inRandomOrder()->where(['engagement_status' => '0'])->first();
+            $admin = Admin::inRandomOrder()->first();
+//            $admin = Admin::inRandomOrder()->where(['engagement_status' => '0'])->first();
             $newMessage = new ChatMessage;
             $newMessage->admin_id = $admin->id;
             $newMessage->user_id = Auth::id();
@@ -57,9 +58,9 @@
             $newMessage->save();
 
 //        update the User table and set the engagement to 1.
-            Admin::where('id', $admin->id)->update([
-                'engagement_status' => '1'
-            ]);
+//            Admin::where('id', $admin->id)->update([
+//                'engagement_status' => '1'
+//            ]);
 
             return $this->dataResponse(Response::HTTP_OK, 'Message sent.', $newMessage);
         }

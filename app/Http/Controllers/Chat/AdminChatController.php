@@ -23,7 +23,8 @@
             return $this->dataResponse(Response::HTTP_OK, 'Rooms fetched', $rooms);
         }
 
-        public function allMyMessages(Request $request, $roomId){
+        public function allMyMessages(Request $request, $roomId)
+        {
             $admin = $request->user('admin');
             $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
             return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessages);
@@ -60,10 +61,14 @@
             return $this->dataResponse(Response::HTTP_CONFLICT, 'Error.', []);
         }
 
-        public function updateEngagementStatus(Request $request){
+        public function updateEngagementStatus(Request $request, $userId)
+        {
             $admin = $request->user('admin');
-            $statusUpdate = User::where(['id'=>$admin->id,'role'=>'admin'])->update([
-               'engagement_status'=>'0'
+//            $statusUpdate = User::where(['id'=>$admin->id,'role'=>'admin'])->update([
+//               'engagement_status'=>'0'
+//            ]);
+            $statusUpdate = ChatMessage::where(['id' => $admin->id, 'user_id' => $userId])->update([
+                'chat_status' => false
             ]);
             return $this->dataResponse(Response::HTTP_OK, 'Chat ended.', $statusUpdate);
         }
