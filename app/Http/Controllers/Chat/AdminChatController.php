@@ -27,7 +27,11 @@
         {
             $admin = $request->user('admin');
             $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
-            return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessages);
+            foreach ($adminMessages as $adminMessage){
+                return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessage->user_id);
+            }
+            return $this->dataResponse(Response::HTTP_NO_CONTENT, 'Error.',[]);
+
         }
 
 
