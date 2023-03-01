@@ -26,11 +26,12 @@
         public function allMyMessages(Request $request, $roomId)
         {
             $admin = $request->user('admin');
-            $adminMessages = ChatMessage::where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
-            foreach ($adminMessages as $adminMessage){
-                return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessage->user_id);
-            }
-            return $this->dataResponse(Response::HTTP_NO_CONTENT, 'Error.',[]);
+            $adminMessages = ChatMessage::select('user_id')->where(['admin_id' => $admin->id, 'chat_room_id' => $roomId])->orderBy('created_at', 'DESC')->get();
+//            foreach ($adminMessages as $adminMessage){
+//                return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessage->user_id);
+//            }
+//            return $this->dataResponse(Response::HTTP_NO_CONTENT, 'Error.',[]);
+                return $this->dataResponse(Response::HTTP_OK, 'Message fetched.', $adminMessages);
 
         }
 
